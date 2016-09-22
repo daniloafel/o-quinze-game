@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Cenas/Fase 1 - Viagem da familia de Chico Bento para Fortaleza.unity
-  isLoaded: 1
-  isActive: 1
