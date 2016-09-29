@@ -11,7 +11,7 @@ public class Jogador : MonoBehaviour {
     
     private CharacterController controlador;
 
-    private float velocidade = 1.0f;
+    private float velocidade = 3.0f;
     private float velocidadeVertical;
     private float tempoAnimacao = 4.0f;
 
@@ -60,8 +60,6 @@ public class Jogador : MonoBehaviour {
                     break;
             }
             direcaoX = ProximoX(2,-2);
-            
-        Debug.Log(proximoX);
         }
         if (Mathf.Abs(transform.position.x - proximoX) > 0.1f){
             movendoX = true;
