@@ -47,7 +47,7 @@ public class GeradorCaminho : MonoBehaviour {
         if(op == -1){
             int numObjetos = Random.Range(0, 5);
             for(int i = 0; i < numObjetos; i++){
-                AddObstaculoItem(Random.Range(0, 2), caminho);
+                AddObjeto(Random.Range(0, 2), caminho);
             }
             
         }
@@ -56,12 +56,12 @@ public class GeradorCaminho : MonoBehaviour {
         zAnterior = posicaoZ;
     }
 
-    private void AddObstaculoItem(int tipo, GameObject caminho){
+    private void AddObjeto(int tipo, GameObject caminho){
         GameObject objeto;
         if (tipo == 1)
-            objeto = Instantiate(obstaculos[0]) as GameObject;
+            objeto = Instantiate(obstaculos[Random.Range(0,obstaculos.Length)]) as GameObject;
         else 
-            objeto = Instantiate(itens[0]) as GameObject;
+            objeto = Instantiate(itens[Random.Range(0,itens.Length)]) as GameObject;
         objeto.transform.SetParent(caminho.transform);
         int x = 2*Random.Range(-1, 2);
         float y = objeto.GetComponent<MeshFilter>().mesh.bounds.extents.y;
