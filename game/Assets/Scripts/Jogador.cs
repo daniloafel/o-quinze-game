@@ -3,45 +3,35 @@ using System.Collections;
 
 public class Jogador : MonoBehaviour {
 
-    Vector2 firstPressPos;
-    Vector2 secondPressPos;
-    Vector2 currentSwipe;
-
     private Vector3 movimento;
     
     private CharacterController controlador;
 
-    private float velocidade = 3.0f;
+    private float velocidade = 4.0f;
     private float velocidadeVertical;
-    private float tempoAnimacao = 4.0f;
+    private float tempoAnimacao;
 
 
     private int proximoX;
     private int direcaoX = 0;
-    //private int energia;
 
     private bool movendoX = false;
-/*
-    private static int maxEnergia = 1000;
-    private float gravidade = 12.0f;
-    */
 
-    private bool jogando;
+    private bool jogando = true;
 
 	void Start () {
+        tempoAnimacao = 4.0f + Time.time;
         controlador = GetComponent<CharacterController>();
-        jogando = true;
-        //energia = 200;
         proximoX = 0;
         velocidadeVertical = -5.0f;
 	}
 	
 	void Update () {
         if (!jogando)
-            TerminarFase();
+            return;
         //Tempo de animação
         if (Time.time < tempoAnimacao){
-            controlador.Move(Vector3.forward * velocidade    * Time.deltaTime);
+            controlador.Move(Vector3.forward * velocidade * Time.deltaTime);
             return;
         }
 
@@ -61,7 +51,7 @@ public class Jogador : MonoBehaviour {
             }
             direcaoX = ProximoX(2,-2);
         }
-        if (Mathf.Abs(transform.position.x - proximoX) > 0.1f){
+        if (Mathf.Abs(transform.position.x - proximoX) > 0.2f){
             movendoX = true;
             movimento.x = direcaoX;
         }
@@ -78,6 +68,7 @@ public class Jogador : MonoBehaviour {
         movimento.z = velocidade;
         controlador.Move(movimento*velocidade*Time.deltaTime);
 
+        
 	}
 
     private int ProximoX(int a, int b){
@@ -87,15 +78,39 @@ public class Jogador : MonoBehaviour {
             return b;
     }
     
-    private void TerminarFase(){
-
-    }
-
     private void Perdeu() {
-
+        jogando = false;
+        GetComponent<Pontuacao>().Perdeu();
     }
 
     private void Ganhou(){
+        jogando = false;
+        GetComponent<Pontuacao>().Ganhou();
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        int pontosAdd = getPontos(hit.gameObject.tag);
+        if (pontosAdd != 0){
+            GetComponent<Pontuacao>().AddPontos(pontosAdd);
+            Destroy(hit.gameObject);
+        }
+        if (GetComponent<Pontuacao>().getPontuacao() <= 0)
+            Perdeu();
+        else if (GetComponent<Pontuacao>().getPontuacao() >= 1000.0f)
+            Ganhou();
+    }
+
+    private int getPontos(string tagHit){
+        if (tagHit.Equals("Item5"))  return 5;
+        if (tagHit.Equals("Item10")) return 10;
+        if (tagHit.Equals("Item15")) return 15;
+        if (tagHit.Equals("Item20")) return 20;
+        if (tagHit.Equals("Item30")) return 30;
+        if (tagHit.Equals("Obstaculo20")) return -20;
+        if (tagHit.Equals("Obstaculo50")) return -50;
+        if (tagHit.Equals("Obstaculo1000")) return -1000;
+
+        return 0;
     }
 
 }

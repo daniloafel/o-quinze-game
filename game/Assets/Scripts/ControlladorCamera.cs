@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Camera : MonoBehaviour {
+public class ControlladorCamera : MonoBehaviour {
 
     private Transform lookAt;
 

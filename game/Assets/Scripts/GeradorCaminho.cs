@@ -7,7 +7,7 @@ public class GeradorCaminho : MonoBehaviour {
     public GameObject[] obstaculos;
     public GameObject[] itens;
 
-    private float zAnterior = 0.0f;
+    private float ultimoZ = 30.0f;
 
 
     private Transform jogadorTransform;
@@ -16,7 +16,6 @@ public class GeradorCaminho : MonoBehaviour {
     private float zonaSegura = 20.0f;
 
     private int maxCaminhosNaTela = 5;
-    private int indexUltimoPrefab = 0;
 
     private List<GameObject> caminhosNaTela;
 
@@ -45,15 +44,15 @@ public class GeradorCaminho : MonoBehaviour {
         caminho.transform.position = new Vector3(0, 0, posicaoZ);
 
         if(op == -1){
-            int numObjetos = Random.Range(0, 5);
+            int numObjetos = Random.Range(0, 4);
             for(int i = 0; i < numObjetos; i++){
                 AddObjeto(Random.Range(0, 2), caminho);
             }
             
         }
+        ultimoZ = posicaoZ;
         posicaoZ += tamanhoCaminho;
         caminhosNaTela.Add(caminho);
-        zAnterior = posicaoZ;
     }
 
     private void AddObjeto(int tipo, GameObject caminho){
@@ -65,8 +64,9 @@ public class GeradorCaminho : MonoBehaviour {
         objeto.transform.SetParent(caminho.transform);
         int x = 2*Random.Range(-1, 2);
         float y = objeto.GetComponent<MeshFilter>().mesh.bounds.extents.y;
-        float z = Random.Range(posicaoZ - (tamanhoCaminho / 2), posicaoZ + (tamanhoCaminho / 2));
+        float z = ultimoZ+ Random.Range(2.0f,20.0f);
         objeto.transform.position = new Vector3(x, y, z);
+        ultimoZ = z;
     }
 
     private void DelCaminho(){
