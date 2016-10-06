@@ -7,8 +7,14 @@ public class Jogador : MonoBehaviour {
     
     private CharacterController controlador;
 
-    private float velocidade = 4.0f;
-    private float velocidadeVertical;
+	public AudioClip item;
+	public AudioClip obstaculo;
+
+	AudioSource audio;
+
+	public float velocidade = 4.0f;
+	public float range = 0.2f;
+	private float velocidadeVertical;
     private float tempoAnimacao;
 
 
@@ -20,6 +26,7 @@ public class Jogador : MonoBehaviour {
     private bool jogando = true;
 
 	void Start () {
+		audio = GetComponent<AudioSource>();
         tempoAnimacao = 4.0f + Time.time;
         controlador = GetComponent<CharacterController>();
         proximoX = 0;
@@ -51,7 +58,7 @@ public class Jogador : MonoBehaviour {
             }
             direcaoX = ProximoX(2,-2);
         }
-        if (Mathf.Abs(transform.position.x - proximoX) > 0.2f){
+		if (Mathf.Abs(transform.position.x - proximoX) > range){
             movendoX = true;
             movimento.x = direcaoX;
         }
@@ -92,7 +99,11 @@ public class Jogador : MonoBehaviour {
         int pontosAdd = getPontos(hit.gameObject.tag);
         if (pontosAdd != 0){
             GetComponent<Pontuacao>().AddPontos(pontosAdd);
-            Destroy(hit.gameObject);
+			Destroy(hit.gameObject);
+			if (pontosAdd > 0) 
+				audio.PlayOneShot (item, 0.7F);
+			else
+				audio.PlayOneShot (obstaculo, 0.7F);
         }
         if (GetComponent<Pontuacao>().getPontuacao() <= 0)
             Perdeu();
