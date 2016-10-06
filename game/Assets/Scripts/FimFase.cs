@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 
 
 
-public class FimFase1 : MonoBehaviour {
+public class FimFase : MonoBehaviour {
 
     private float segProxFase = 10.0f;
     public Text contadorTexto;
+
+	public string proximaFase;
 
     public Image imgFundo;
 
@@ -30,7 +32,7 @@ public class FimFase1 : MonoBehaviour {
 
         if(segProxFase <= 0.0f){
             Debug.Log("chamou a cena");
-            SceneManager.LoadScene("Fase 1 - Viagem da familia de Chico Bento para Fortaleza");
+			SceneManager.LoadScene(proximaFase);
         }
 
         segProxFase -= Time.deltaTime;
@@ -41,4 +43,8 @@ public class FimFase1 : MonoBehaviour {
         gameObject.SetActive(true);
         visivel = true;
     }
+
+	public void setProximaFase(string fase){
+		proximaFase = fase;
+	}
 }
