@@ -20,7 +20,7 @@ public class ControlladorCamera : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         movimento = lookAt.position + startrOffset;
 
         //X

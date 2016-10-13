@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Jogador : MonoBehaviour {
+public class JogadorFases1e2 : MonoBehaviour {
 
     private Vector3 movimento;
     
@@ -100,9 +100,9 @@ public class Jogador : MonoBehaviour {
         if (pontosAdd != 0){
             GetComponent<Pontuacao>().AddPontos(pontosAdd);
 			Destroy(hit.gameObject);
-			if (pontosAdd > 0) 
+			if (pontosAdd > 0) {
 				audio.PlayOneShot (item, 0.7F);
-			else
+			}else
 				audio.PlayOneShot (obstaculo, 0.7F);
         }
         if (GetComponent<Pontuacao>().getPontuacao() <= 0)
