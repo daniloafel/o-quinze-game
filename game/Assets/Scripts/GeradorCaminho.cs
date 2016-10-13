@@ -48,7 +48,6 @@ public class GeradorCaminho : MonoBehaviour {
             for(int i = 0; i < numObjetos; i++){
                 AddObjeto(Random.Range(0, 2), caminho);
             }
-            
         }
         ultimoZ = posicaoZ;
         posicaoZ += tamanhoCaminho;
