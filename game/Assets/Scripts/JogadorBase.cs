@@ -152,6 +152,9 @@ public abstract class JogadorBase : MonoBehaviour {
 		movimento.y -= gravidade * Time.deltaTime;
 		movimento.z = velocidade;
 		controlador.Move(movimento * velocidade*Time.deltaTime);
+		//gambis para não atravessar o plano
+		if (transform.position.y < 1.0f)
+			movimento.y = 1;
 	}
 
 	private int ProximoX(int a, int b){
