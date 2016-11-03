@@ -4,15 +4,16 @@ using UnityEngine.UI;
 public class Pontuacao : MonoBehaviour {
 
     private float pontuacao = 0.001f;
-    private static float maxPontuacao = 1000.0f;
+	private static float maxPontuacao = 1000.0f;
 
 
+	public Slider energia;
+	public FimFase fimFase;
     public Text textoPontuacao;
-    public Slider energia;
-    public FimDeJogo fimDeJogo;
-    public FimFase fimFase;
+	public FimDeJogo fimDeJogo;
+
 	public int timeDecay;
-	public float pontuacaoInicial;
+	public float pontuacaoInicial = 0.001f;
 
 	public string proximaFase;
 
@@ -42,7 +43,8 @@ public class Pontuacao : MonoBehaviour {
 
     public void Ganhou(){
         jogando = false;
-        Destroy(energia.gameObject);
+		if (energia != null)
+        	Destroy(energia.gameObject);
         fimFase.ToggleMenu();
     }
 

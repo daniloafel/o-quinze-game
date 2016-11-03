@@ -3,44 +3,48 @@ using System.Collections;
 
 public class Cabra : MonoBehaviour {
 
-	private Transform jogador;
+	public JogadorFase3 jogador;
 
 	private Vector3 movimento;
 
 	private CharacterController controlador;
-	Rigidbody rigidbody;
 	private bool pular = false;
 
-	public float velocidade = 4.0f;
-	public float range = 0.2f;
-	private float velocidadeVertical;
+	public float velocidade;
+	public float gravidade = 20.0f;
+	public float maxVelocidade = 5.5f;
 
 	private bool jogando = true;
 
 	void Start () {
-		rigidbody = GetComponent<Rigidbody>();
 		controlador = GetComponent<CharacterController>();
-		jogador = GameObject.FindGameObjectWithTag("Player").transform;
-
+		movimento = new Vector3 ();
 	}
 
 	void Update () {
-		Debug.Log ("running");
 		if (!jogando)
 			return;
 		// definindo a movimentação
 		//eixo y
 		if (pular) {
 			movimento.y = velocidade;
-			pular = false;
-		}
-		else
+			pular = false;	
+		} else {
 			movimento.y = -velocidade;
-		//eixo z
-		movimento.z = velocidade;
-		if (transform.position.z - jogador.position.z < 80.0f){
-			controlador.Move(movimento*velocidade*Time.deltaTime);
 		}
+		//eixo z
+		movimento.y -= gravidade * Time.deltaTime;
+		if (transform.position.z - jogador.transform.position.z < 80.0f) {
+			movimento.z = velocidade;
+		} else {
+			movimento.z = 0.0f;
+		}
+		if (jogador.velocidade < jogador.maxVelocidade)
+			velocidade = jogador.velocidade;
+		else
+			velocidade = maxVelocidade;
+		movimento.z = velocidade;
+		controlador.Move(movimento*velocidade*Time.deltaTime);
 	}
 
 
@@ -48,7 +52,6 @@ public class Cabra : MonoBehaviour {
 	private void OnControllerColliderHit(ControllerColliderHit hit) {
 		string hitTag = hit.gameObject.tag;
 		if (!hitTag.Equals("Caminho") && !hitTag.Equals("Player")){
-			Debug.Log ("pular");
 			pular = true;
 		}
 	}
