@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class GeradorCaminho : MonoBehaviour {
+public class GeradorCaminhoBase : MonoBehaviour {
 
+	public GameObject[] itens;
     public GameObject[] caminhos;
     public GameObject[] obstaculos;
-    public GameObject[] itens;
 
-    private float ultimoZ = 30.0f;
+	private Transform jogadorTransform;
 
+	public float zpos= 0.0f;
+	public float ultimoZ = 30.0f;
+	public float posicaoZ = 0.0f;
+	public float zonaSegura = 20.0f;
+	public float tamanhoCaminho = 30.0f;
 
-    private Transform jogadorTransform;
-    private float posicaoZ = 0.0f;
-    private float tamanhoCaminho = 30.0f;
-    private float zonaSegura = 20.0f;
-
-    private int maxCaminhosNaTela = 5;
+	public int maxObstaculos = 4;
+    private int maxCaminhosNaTela = 7;
 
     private List<GameObject> caminhosNaTela;
 
@@ -24,7 +25,7 @@ public class GeradorCaminho : MonoBehaviour {
         caminhosNaTela = new List<GameObject>();
         jogadorTransform = GameObject.FindGameObjectWithTag("Player").transform;
         for (int i = 0; i < maxCaminhosNaTela; i++){
-            if (i < 2)
+            if (i < 3)
                 AddCaminho(0);
             else
                 AddCaminho();
@@ -39,14 +40,15 @@ public class GeradorCaminho : MonoBehaviour {
     }
 
     private void AddCaminho(int op = -1){
+		zpos = 0.0f;
         GameObject caminho = Instantiate(caminhos[0]) as GameObject;
         caminho.transform.SetParent(transform);
         caminho.transform.position = new Vector3(0, 0, posicaoZ);
 
         if(op == -1){
-            int numObjetos = Random.Range(0, 4);
+			int numObjetos = Random.Range(0, maxObstaculos);
             for(int i = 0; i < numObjetos; i++){
-                AddObjeto(Random.Range(0, 2), caminho);
+                AddObjeto(caminho);
             }
         }
         ultimoZ = posicaoZ;
@@ -54,7 +56,8 @@ public class GeradorCaminho : MonoBehaviour {
         caminhosNaTela.Add(caminho);
     }
 
-    private void AddObjeto(int tipo, GameObject caminho){
+	public virtual void AddObjeto(GameObject caminho){
+		int tipo = Random.Range (0, 2);
         GameObject objeto;
         if (tipo == 1)
             objeto = Instantiate(obstaculos[Random.Range(0,obstaculos.Length)]) as GameObject;
@@ -63,7 +66,7 @@ public class GeradorCaminho : MonoBehaviour {
         objeto.transform.SetParent(caminho.transform);
         int x = 2*Random.Range(-1, 2);
         float y = objeto.GetComponent<MeshFilter>().mesh.bounds.extents.y;
-        float z = ultimoZ+ Random.Range(2.0f,20.0f);
+        float z = ultimoZ+ Random.Range(-14.0f,14.0f);
         objeto.transform.position = new Vector3(x, y, z);
         ultimoZ = z;
     }

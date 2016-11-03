@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class JogadorFase3 : JogadorBase {
 	public float maxVelocidade = 5.55f;
+
 	void FixedUpdate(){
 		if (velocidade < maxVelocidade) {
 			velocidade += 0.1f*Time.deltaTime;
@@ -21,7 +23,7 @@ public class JogadorFase3 : JogadorBase {
 			this.GetComponent<AudioSource>().PlayOneShot (obstaculo, 0.7F);
 		}
 
-		if (velocidade <= 0.0f)
+		if (velocidade <= 3.0f)
 			this.Perdeu ();
 	}
 

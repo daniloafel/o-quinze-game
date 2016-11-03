@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Cabra : MonoBehaviour {
 
-	private Transform jogador;
+	public JogadorFase3 jogador;
 
 	private Vector3 movimento;
 
@@ -12,12 +12,12 @@ public class Cabra : MonoBehaviour {
 
 	public float velocidade;
 	public float gravidade = 20.0f;
+	public float maxVelocidade = 5.5f;
 
 	private bool jogando = true;
 
 	void Start () {
 		controlador = GetComponent<CharacterController>();
-		jogador = GameObject.FindGameObjectWithTag("Player").transform;
 		movimento = new Vector3 ();
 	}
 
@@ -34,10 +34,17 @@ public class Cabra : MonoBehaviour {
 		}
 		//eixo z
 		movimento.y -= gravidade * Time.deltaTime;
-		movimento.z = velocidade;
-		if (transform.position.z - jogador.position.z < 80.0f){
-			controlador.Move(movimento*velocidade*Time.deltaTime);
+		if (transform.position.z - jogador.transform.position.z < 80.0f) {
+			movimento.z = velocidade;
+		} else {
+			movimento.z = 0.0f;
 		}
+		if (jogador.velocidade < jogador.maxVelocidade)
+			velocidade = jogador.velocidade;
+		else
+			velocidade = maxVelocidade;
+		movimento.z = velocidade;
+		controlador.Move(movimento*velocidade*Time.deltaTime);
 	}
 
 

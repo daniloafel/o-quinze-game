@@ -1,33 +1,47 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public abstract class JogadorBase : MonoBehaviour {
 	public Vector3 movimento;
 
-	private CharacterController controlador;
+	public Pontuacao pontuacao;
+	public CharacterController controlador;
+	public GeradorCaminhoBase geradorCaminho;
 
 	public AudioClip item;
 	public AudioClip obstaculo;
-	public AudioSource audio;
+	public AudioSource musica;
 
 	public float velocidade;
 	public float range = 0.2f;
+	public float tempoAnimacao;
 	public float velocidadePulo;
-	private float tempoAnimacao;
 	public float gravidade = 20.0f;
+	public float tempoAbaixado = 0.0f;
 
+	public int proximoX;
 	private int contPulo;
-	private int proximoX;
-	private int direcaoX = 0;
+	public int direcaoX = 0;
 	public int previnirPulosConsecutivos = 1;
 
 	private bool jogando = true;
 	private bool movendoX = false;
 
+	private Vector2 lastp;
+	private Vector2 firstp;
+	public float DragDistance;
+
+
+
 	void Start () {
 		proximoX = 0;
 		tempoAnimacao = 4.0f + Time.time;
-		audio = GetComponent<AudioSource>();
+		musica = GetComponent<AudioSource>();
 		controlador = GetComponent<CharacterController>();
 	}
 
@@ -46,15 +60,8 @@ public abstract class JogadorBase : MonoBehaviour {
 			}
 			direcaoX = ProximoX(2,-2);
 		}
-		if (Mathf.Abs(transform.position.x - proximoX) > range){
-			movendoX = true;
-			movimento.x = direcaoX;
-		}
-		else{
-			movendoX = false;
-			movimento.x = 0.0f;
-		}
 	}
+
 	public void moverY(){
 		if (controlador.isGrounded) {
 			if (!Input.GetMouseButton(1))
@@ -67,15 +74,82 @@ public abstract class JogadorBase : MonoBehaviour {
 		movimento.y -= gravidade * Time.deltaTime;
 	}
 
+	public virtual void moverXMobile (){
+		if (lastp.x > firstp.x){ //Right move
+			if (proximoX >= 0){
+				proximoX = 2;
+			}else{
+				proximoX = 0;
+			}
+			direcaoX = 2;
+		}
+		else{ //Left move
+			if (proximoX <= 0){
+				proximoX = -2;
+			}else{
+				proximoX = 0;
+			}
+			direcaoX = -2;
+		}
+	}
+
+	public void moverYMobile (){
+		if (lastp.y > firstp.y) {
+			movimento.y = velocidadePulo;
+		}
+		else{
+			tempoAbaixado = 2.0f;
+		}
+	}
+
 	void Update () {
 		if (!jogando)
 			return;
 		if (Time.time < tempoAnimacao){
-			controlador.Move(Vector3.forward * velocidade * Time.deltaTime);
+			controlador.Move(Vector3.forward * 3.0f * Time.deltaTime);
 			return;
 		}
+
+		// definindo a movimentação
+		foreach (Touch touch in Input.touches){
+			if (touch.phase == TouchPhase.Began){
+				firstp = touch.position;
+				lastp = touch.position;
+			}
+			if (touch.phase == TouchPhase.Moved){
+				lastp = touch.position;
+			}
+
+			if (touch.phase == TouchPhase.Ended){
+				if (Mathf.Abs(lastp.x - firstp.x) > DragDistance || Mathf.Abs(lastp.y - firstp.y) > DragDistance){
+					if (Mathf.Abs(lastp.x - firstp.x) > Mathf.Abs(lastp.y - firstp.y))
+						moverXMobile();
+					 else 
+						moverYMobile ();
+				}
+				else {
+				}
+			}
+		}
 		moverX();
-		moverY ();
+		moverY();
+		if (Mathf.Abs(transform.position.x - proximoX) > range){
+			movendoX = true;
+			movimento.x = direcaoX;
+		}
+		else{
+			movendoX = false;
+			movimento.x = 0.0f;
+		}
+		if (tempoAbaixado < 0.0f) {
+			transform.localRotation = Quaternion.Euler (new Vector3 (0, 0, 0));
+			controlador.height = 2.0f;
+		} else {
+			controlador.height = 0.5f;
+			transform.localRotation = Quaternion.Euler (new Vector3 (-90, 0, 0));
+			tempoAbaixado -= Time.deltaTime;
+		}
+		movimento.y -= gravidade * Time.deltaTime;
 		movimento.z = velocidade;
 		controlador.Move(movimento * velocidade*Time.deltaTime);
 	}
@@ -87,11 +161,27 @@ public abstract class JogadorBase : MonoBehaviour {
 	public void Perdeu() {
 		jogando = false;
 		GetComponent<Pontuacao>().Perdeu();
+		Analytics.CustomEvent("Perdeu", new Dictionary<string, object>
+			{	
+				{ "Fase", SceneManager.GetActiveScene().name}, 
+				{ "Tempo", Time.timeSinceLevelLoad }, 
+				{ "Distancia", geradorCaminho.posicaoZ}, 
+				{ "Velocidade", velocidade}, 
+				{ "Pontuacao Inicial", pontuacao.pontuacaoInicial}
+			});
 	}
 
 	public void Ganhou(){
 		jogando = false;
 		GetComponent<Pontuacao>().Ganhou();
+		Analytics.CustomEvent("Proxima Fase", new Dictionary<string, object>
+			{
+				{ "Fase", SceneManager.GetActiveScene().name}, 
+				{ "Tempo", Time.timeSinceLevelLoad }, 
+				{ "Distancia", geradorCaminho.posicaoZ}, 
+				{ "Velocidade", velocidade}, 
+				{ "Pontuacao Inicial", pontuacao.pontuacaoInicial}
+			});
 	}
 
 	private void OnControllerColliderHit(ControllerColliderHit hit) {
@@ -100,9 +190,9 @@ public abstract class JogadorBase : MonoBehaviour {
 			GetComponent<Pontuacao>().AddPontos(pontosAdd);
 			Destroy(hit.gameObject);
 			if (pontosAdd > 0) {
-				audio.PlayOneShot (item, 0.7F);
+				musica.PlayOneShot (item, 0.7F);
 			}else
-				audio.PlayOneShot (obstaculo, 0.7F);
+				musica.PlayOneShot (obstaculo, 0.7F);
 		}
 		if (GetComponent<Pontuacao>().getPontuacao() <= 0)
 			Perdeu();
