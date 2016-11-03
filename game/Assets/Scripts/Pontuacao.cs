@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Pontuacao : MonoBehaviour {
 
-    private float pontuacao = 0.001f;
-	private static float maxPontuacao = 1000.0f;
+	public float pontuacao = 0.001f;
+	public float maxPontuacao = 1000.0f;
 
 
 	public Slider energia;
@@ -37,7 +37,7 @@ public class Pontuacao : MonoBehaviour {
 
     public void Perdeu(){
         jogando = false;
-        Destroy(energia.gameObject);
+		energia.enabled = false;
         fimDeJogo.ToggleMenu();
     }
 
