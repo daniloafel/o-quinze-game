@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class GeradorCaminhoFase6 : MonoBehaviour {
+public class GeradorCaminhoFase6 : GeradorCaminhoBase {
 	private const int ESQ = -2;
 	private const int MEIO = 0;
 	private const int DIR = 2;
 
+	private int atual = 0;
+	private int maxTrilhosNaTela = 15;
 
 
 
 	public GameObject[] trilhos;
-
+/*
 	private Transform jogadorTransform;
 
 	public float zpos= 0.0f;
@@ -18,11 +20,9 @@ public class GeradorCaminhoFase6 : MonoBehaviour {
 	public float zonaSegura = 20.0f;
 	public float tamanhoCaminho = 10.0f;
 	
-	private int atual = 0;
-	private int maxTrilhosNaTela = 15;
 
 	private List<GameObject> caminhosNaTela;
-	private List<int> selecionados;
+*/	private List<int> selecionados;
 
 
 	void Start () {

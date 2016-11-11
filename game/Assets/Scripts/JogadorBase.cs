@@ -143,7 +143,7 @@ public abstract class JogadorBase : MonoBehaviour {
 		}
 		if (tempoAbaixado < 0.0f) {
 			transform.localRotation = Quaternion.Euler (new Vector3 (0, 0, 0));
-			controlador.height = 2.0f;
+			controlador.height = 1.0f;
 		} else {
 			controlador.height = 0.5f;
 			transform.localRotation = Quaternion.Euler (new Vector3 (-90, 0, 0));
@@ -152,9 +152,7 @@ public abstract class JogadorBase : MonoBehaviour {
 		movimento.y -= gravidade * Time.deltaTime;
 		movimento.z = velocidade;
 		controlador.Move(movimento * velocidade*Time.deltaTime);
-		//gambis para não atravessar o plano
-		if (transform.position.y < 1.0f)
-			movimento.y = 1;
+
 	}
 
 	private int ProximoX(int a, int b){

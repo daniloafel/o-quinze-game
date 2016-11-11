@@ -7,7 +7,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
     public GameObject[] caminhos;
     public GameObject[] obstaculos;
 
-	private Transform jogadorTransform;
+	public Transform jogadorTransform;
 
 	public float zpos= 0.0f;
 	public float ultimoZ = 30.0f;
@@ -16,9 +16,9 @@ public class GeradorCaminhoBase : MonoBehaviour {
 	public float tamanhoCaminho = 30.0f;
 
 	public int maxObstaculos = 4;
-    private int maxCaminhosNaTela = 7;
+    public int maxCaminhosNaTela = 7;
 
-    private List<GameObject> caminhosNaTela;
+    public List<GameObject> caminhosNaTela;
 
 
     void Start () {
