@@ -7,12 +7,12 @@ public class GeradorCaminhoFase6 : GeradorCaminhoBase {
 	private const int DIR = 2;
 
 	private int atual = 0;
-	private int maxTrilhosNaTela = 15;
+
+	/*
+	public int maxCaminhosNaTela = 7;
+	public GameObject[] caminhos;
 
 
-
-	public GameObject[] trilhos;
-/*
 	private Transform jogadorTransform;
 
 	public float zpos= 0.0f;
@@ -21,25 +21,27 @@ public class GeradorCaminhoFase6 : GeradorCaminhoBase {
 	public float tamanhoCaminho = 10.0f;
 	
 
-	private List<GameObject> caminhosNaTela;
-*/	private List<int> selecionados;
+	private List<GameObject> caminhosNaTela;*/
+	private List<int> selecionados;
 
 
 	void Start () {
 		caminhosNaTela = new List<GameObject>();
 		selecionados = new List<int>();
 		jogadorTransform = GameObject.FindGameObjectWithTag("Player").transform;
-		for (int i = 0; i < maxTrilhosNaTela; i++){
-			if (i < 3)
-				AddTrilhoInicial();
+		for (int i = 0; i < maxCaminhosNaTela; i++){
+			if (i < 5)
+				AddTrilhoInicial ();
 			else
-				AddTrilho();
+				AddTrilho ();
+				//AddTrilho();
 		}
 	}
 
 	void FixedUpdate () {
-		if (jogadorTransform.position.z - zonaSegura > posicaoZ - maxTrilhosNaTela * tamanhoCaminho){
+		if (jogadorTransform.position.z - zonaSegura > posicaoZ - maxCaminhosNaTela * tamanhoCaminho){
 			AddTrilho();
+			//AddTrilho();
 			DelCaminho();
 		}
 	}
@@ -118,7 +120,7 @@ public class GeradorCaminhoFase6 : GeradorCaminhoBase {
 
 	private void InstanciaPeca(int index){
 		GameObject trilho;
-		trilho = Instantiate(trilhos[index]) as GameObject;
+		trilho = Instantiate(caminhos[index]) as GameObject;
 		trilho.transform.SetParent(transform);
 		trilho.transform.position = new Vector3(atual, 0, posicaoZ);
 		caminhosNaTela.Add(trilho);

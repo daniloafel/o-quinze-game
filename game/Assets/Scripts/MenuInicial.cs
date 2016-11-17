@@ -15,6 +15,6 @@ public class MenuInicial : MonoBehaviour {
 	}
 
 	public void ComecarJogo(){
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(6);
 	}
 }

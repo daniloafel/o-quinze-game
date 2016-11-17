@@ -12,7 +12,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
 	public float zpos= 0.0f;
 	public float ultimoZ = 30.0f;
 	public float posicaoZ = 0.0f;
-	public float zonaSegura = 20.0f;
+	public float zonaSegura = 30.0f;
 	public float tamanhoCaminho = 30.0f;
 
 	public int maxObstaculos = 4;
@@ -33,7 +33,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
     }
 
     void Update () {
-        if (jogadorTransform.position.z - zonaSegura > posicaoZ - maxCaminhosNaTela * tamanhoCaminho){
+		if (jogadorTransform.position.z - zonaSegura > posicaoZ - maxCaminhosNaTela * tamanhoCaminho + tamanhoCaminho/2){
             AddCaminho();
             DelCaminho();
         }
@@ -65,9 +65,8 @@ public class GeradorCaminhoBase : MonoBehaviour {
             objeto = Instantiate(itens[Random.Range(0,itens.Length)]) as GameObject;
         objeto.transform.SetParent(caminho.transform);
         int x = 2*Random.Range(-1, 2);
-        float y = objeto.GetComponent<MeshFilter>().mesh.bounds.extents.y;
         float z = ultimoZ+ Random.Range(-14.0f,14.0f);
-        objeto.transform.position = new Vector3(x, y, z);
+        objeto.transform.position = new Vector3(x, 0, z);
         ultimoZ = z;
     }
 
