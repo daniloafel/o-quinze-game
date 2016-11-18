@@ -7,6 +7,7 @@ public class Pontuacao : MonoBehaviour {
 	public float maxPontuacao = 1000.0f;
 
 	public Image loadingBar;
+	public Image radialProgress;
 
 	public FimFase fimFase;
     public Text textoPontuacao;
@@ -43,8 +44,9 @@ public class Pontuacao : MonoBehaviour {
 
     public void Ganhou(){
         jogando = false;
-		if (loadingBar != null)
-			Destroy(loadingBar.gameObject);
+		if (radialProgress != null)
+			foreach(Transform child in radialProgress.GetComponentsInChildren<Transform>())
+				Destroy(child.gameObject);
         fimFase.ToggleMenu();
     }
 
