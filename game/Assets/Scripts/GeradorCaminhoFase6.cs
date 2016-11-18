@@ -105,7 +105,6 @@ public class GeradorCaminhoFase6 : GeradorCaminhoBase {
 		int nCaminhos = NumeroDeCaminhos ();
 		for (int i = 0; i < nCaminhos; i++) {
 			int tipoTrilho = EscolheTrilho ();
-			GameObject trilho;
 			InstanciaPeca (tipoTrilho);
 		}
 		posicaoZ += tamanhoCaminho;
