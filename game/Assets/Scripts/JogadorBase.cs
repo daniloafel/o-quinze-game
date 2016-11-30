@@ -152,7 +152,7 @@ public abstract class JogadorBase : MonoBehaviour {
 		}
 		if (tempoAbaixado <= 0.0f) {
 			transform.localRotation = Quaternion.Euler (new Vector3 (0, 0, 0));
-			controlador.height = 1.0f;
+			controlador.height = 2.0f;
 		} else {
 			controlador.height = 0.5f;
 			transform.localRotation = Quaternion.Euler (new Vector3 (-90, 0, 0));

@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 49e72c5ecc12a4c41b2c87d7f7754a35
-timeCreated: 1478865535
+guid: 17847d57168e1914cbcb170af6c3e9fc
+timeCreated: 1480517172
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SpriteCorrendo - Copia_0
-    21300002: SpriteCorrendo - Copia_1
-    21300004: SpriteCorrendo - Copia_2
-    21300006: SpriteCorrendo - Copia_3
-    21300008: SpriteCorrendo - Copia_4
-    21300010: SpriteCorrendo - Copia_5
-    21300012: SpriteCorrendo - Copia_6
-    21300014: SpriteCorrendo - Copia_7
-    21300016: SpriteCorrendo - Copia_8
-    21300018: SpriteCorrendo - Copia_9
-    21300020: SpriteCorrendo - Copia_10
-    21300022: SpriteCorrendo - Copia_11
+    21300000: SpriteCorrendo_0
+    21300002: SpriteCorrendo_1
+    21300004: SpriteCorrendo_2
+    21300006: SpriteCorrendo_3
+    21300008: SpriteCorrendo_4
+    21300010: SpriteCorrendo_5
+    21300012: SpriteCorrendo_6
+    21300014: SpriteCorrendo_7
+    21300016: SpriteCorrendo_8
+    21300018: SpriteCorrendo_9
+    21300020: SpriteCorrendo_10
+    21300022: SpriteCorrendo_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -65,156 +65,156 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_0
+      name: SpriteCorrendo_0
       rect:
         serializedVersion: 2
-        x: 94
-        y: 53
-        width: 44
-        height: 91
+        x: 539
+        y: 302
+        width: 260
+        height: 531
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_1
+      name: SpriteCorrendo_1
       rect:
         serializedVersion: 2
-        x: 155
-        y: 48
-        width: 65
-        height: 95
+        x: 892
+        y: 276
+        width: 381
+        height: 548
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_2
+      name: SpriteCorrendo_2
       rect:
         serializedVersion: 2
-        x: 246
-        y: 46
-        width: 46
-        height: 98
+        x: 1418
+        y: 261
+        width: 274
+        height: 572
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_3
+      name: SpriteCorrendo_3
       rect:
         serializedVersion: 2
-        x: 317
-        y: 45
-        width: 46
-        height: 99
+        x: 1831
+        y: 256
+        width: 272
+        height: 574
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_4
+      name: SpriteCorrendo_4
       rect:
         serializedVersion: 2
-        x: 387
-        y: 46
-        width: 46
-        height: 98
+        x: 2236
+        y: 260
+        width: 272
+        height: 573
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_5
+      name: SpriteCorrendo_5
       rect:
         serializedVersion: 2
-        x: 449
-        y: 50
-        width: 64
-        height: 94
+        x: 2594
+        y: 285
+        width: 376
+        height: 548
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_6
+      name: SpriteCorrendo_6
       rect:
         serializedVersion: 2
-        x: 548
-        y: 45
-        width: 41
-        height: 100
+        x: 3170
+        y: 256
+        width: 239
+        height: 583
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_7
+      name: SpriteCorrendo_7
       rect:
         serializedVersion: 2
-        x: 631
-        y: 50
-        width: 57
-        height: 91
+        x: 3647
+        y: 284
+        width: 335
+        height: 532
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_8
+      name: SpriteCorrendo_8
       rect:
         serializedVersion: 2
-        x: 696
-        y: 46
-        width: 46
-        height: 94
+        x: 4019
+        y: 261
+        width: 272
+        height: 546
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_9
+      name: SpriteCorrendo_9
       rect:
         serializedVersion: 2
-        x: 767
-        y: 42
-        width: 46
-        height: 99
+        x: 4430
+        y: 241
+        width: 274
+        height: 572
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_10
+      name: SpriteCorrendo_10
       rect:
         serializedVersion: 2
-        x: 838
-        y: 47
-        width: 46
-        height: 99
+        x: 4843
+        y: 270
+        width: 272
+        height: 572
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpriteCorrendo - Copia_11
+      name: SpriteCorrendo_11
       rect:
         serializedVersion: 2
-        x: 909
-        y: 44
-        width: 65
-        height: 99
+        x: 5254
+        y: 253
+        width: 378
+        height: 574
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
