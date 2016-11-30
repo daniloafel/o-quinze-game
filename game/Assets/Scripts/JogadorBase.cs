@@ -12,7 +12,7 @@ public abstract class JogadorBase : MonoBehaviour {
 	public Pontuacao pontuacao;
 	public CharacterController controlador;
 	public GeradorCaminhoBase geradorCaminho;
-	public Rigidbody playerRigidbody;
+
 
 	public AudioClip item;
 	public AudioClip obstaculo;
@@ -44,9 +44,7 @@ public abstract class JogadorBase : MonoBehaviour {
 		tempoAnimacao = 4.0f + Time.time;
 		musica = GetComponent<AudioSource>();
 		controlador = GetComponent<CharacterController>();
-		float g = Physics.gravity.y;
-		g = -5.0f;
-//		Physics.gravity.y = g;
+
 	}
 
 	public virtual void  moverX(){

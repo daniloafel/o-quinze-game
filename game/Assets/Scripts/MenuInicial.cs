@@ -4,17 +4,10 @@ using System.Collections;
 
 public class MenuInicial : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	 
-	// Update is called once per frame
-	void Update () {
-	
+	public void ComecarJogo(){
+		SceneManager.LoadScene(1);
 	}
 
-	public void ComecarJogo(){
-		SceneManager.LoadScene(6);
+	public void SelecionarFase(){
 	}
 }
