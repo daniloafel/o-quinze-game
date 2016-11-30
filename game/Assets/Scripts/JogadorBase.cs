@@ -12,6 +12,7 @@ public abstract class JogadorBase : MonoBehaviour {
 	public Pontuacao pontuacao;
 	public CharacterController controlador;
 	public GeradorCaminhoBase geradorCaminho;
+	public Rigidbody playerRigidbody;
 
 	public AudioClip item;
 	public AudioClip obstaculo;
@@ -43,6 +44,9 @@ public abstract class JogadorBase : MonoBehaviour {
 		tempoAnimacao = 4.0f + Time.time;
 		musica = GetComponent<AudioSource>();
 		controlador = GetComponent<CharacterController>();
+		float g = Physics.gravity.y;
+		g = -5.0f;
+//		Physics.gravity.y = g;
 	}
 
 	public virtual void  moverX(){
@@ -70,8 +74,11 @@ public abstract class JogadorBase : MonoBehaviour {
 				movimento.y = velocidadePulo;
 				contPulo = 0;
 			}
+			Debug.Log ("isGrounded");
+			// playerRigidbody.AddForce (new Vector3 (0.0f, velocidadePulo, 0.0f));
 		}
 		movimento.y -= gravidade * Time.deltaTime;
+
 	}
 
 	public virtual void moverXMobile (){
@@ -109,7 +116,11 @@ public abstract class JogadorBase : MonoBehaviour {
 			controlador.Move(Vector3.forward * 3.0f * Time.deltaTime);
 			return;
 		}
-
+		///weird ass behaviour
+		// if (Input.GetMouseButton(1))
+		// 	 playerRigidbody.AddForce (new Vector3 (0.0f, velocidadePulo, 0.0f));
+		// if (Input.GetMouseButton(0))
+		// 	playerRigidbody.AddForce (new Vector3 (0.0f, 0.0f, velocidade));
 		// definindo a movimentação
 		foreach (Touch touch in Input.touches){
 			if (touch.phase == TouchPhase.Began){
@@ -141,9 +152,9 @@ public abstract class JogadorBase : MonoBehaviour {
 			movendoX = false;
 			movimento.x = 0.0f;
 		}
-		if (tempoAbaixado < 0.0f) {
+		if (tempoAbaixado <= 0.0f) {
 			transform.localRotation = Quaternion.Euler (new Vector3 (0, 0, 0));
-			controlador.height = 2.0f;
+			controlador.height = 1.0f;
 		} else {
 			controlador.height = 0.5f;
 			transform.localRotation = Quaternion.Euler (new Vector3 (-90, 0, 0));
@@ -152,9 +163,10 @@ public abstract class JogadorBase : MonoBehaviour {
 		movimento.y -= gravidade * Time.deltaTime;
 		movimento.z = velocidade;
 		controlador.Move(movimento * velocidade*Time.deltaTime);
+
 		//gambis para não atravessar o plano
-		if (transform.position.y < 1.0f)
-			movimento.y = 1;
+		//if (transform.position.y < 1.0f)
+		//	movimento.y = 1.0805f;
 	}
 
 	private int ProximoX(int a, int b){

@@ -6,8 +6,9 @@ public class Pontuacao : MonoBehaviour {
 	public float pontuacao = 0.001f;
 	public float maxPontuacao = 1000.0f;
 
+	public Image loadingBar;
+	public Image radialProgress;
 
-	public Slider energia;
 	public FimFase fimFase;
     public Text textoPontuacao;
 	public FimDeJogo fimDeJogo;
@@ -28,7 +29,7 @@ public class Pontuacao : MonoBehaviour {
             return;
         textoPontuacao.text = ((int)pontuacao).ToString();
 		pontuacao -= Time.deltaTime*2 * timeDecay;
-        energia.value = (pontuacao / maxPontuacao);
+		loadingBar.fillAmount = (pontuacao / maxPontuacao);
     }
 
     public void AddPontos(int pontos){
@@ -37,14 +38,15 @@ public class Pontuacao : MonoBehaviour {
 
     public void Perdeu(){
         jogando = false;
-		energia.enabled = false;
+		loadingBar.enabled = false;
         fimDeJogo.ToggleMenu();
     }
 
     public void Ganhou(){
         jogando = false;
-		if (energia != null)
-        	Destroy(energia.gameObject);
+		if (radialProgress != null)
+			foreach(Transform child in radialProgress.GetComponentsInChildren<Transform>())
+				Destroy(child.gameObject);
         fimFase.ToggleMenu();
     }
 

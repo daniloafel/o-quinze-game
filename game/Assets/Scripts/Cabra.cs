@@ -32,8 +32,8 @@ public class Cabra : MonoBehaviour {
 		} else {
 			movimento.y = -velocidade;
 		}
-		//eixo z
 		movimento.y -= gravidade * Time.deltaTime;
+		//eixo z
 		if (transform.position.z - jogador.transform.position.z < 80.0f) {
 			movimento.z = velocidade;
 		} else {

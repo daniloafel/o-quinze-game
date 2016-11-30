@@ -19,15 +19,16 @@ public class ControlladorCamera : MonoBehaviour {
         startrOffset = transform.position - lookAt.position;
     }
 	
-	// Update is called once per frame
+
 	void LateUpdate () {
         movimento = lookAt.position + startrOffset;
 
         //X
         movimento.x = 0;
         //Y
-        movimento.y = Mathf.Clamp(movimento.y, 3, 5);
+        movimento.y = Mathf.Clamp(movimento.y, 1.8f, 3);
 
+		movimento.z -= 4.0f;
         if (transicao > 1.0f){
             transform.position = movimento;
         }
