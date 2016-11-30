@@ -44,6 +44,9 @@ public class GeradorCaminhoBase : MonoBehaviour {
         GameObject caminho = Instantiate(caminhos[0]) as GameObject;
         caminho.transform.SetParent(transform);
         caminho.transform.position = new Vector3(0, 0, posicaoZ);
+//		GameObject caminho2 = Instantiate(caminhos[1]) as GameObject;
+//		caminho2.transform.SetParent(transform);
+//		caminho2.transform.position = new Vector3(-6, 0, posicaoZ);
 
         if(op == -1){
 			float z = 2.0f;
