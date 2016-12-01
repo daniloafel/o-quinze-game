@@ -44,6 +44,9 @@ public abstract class JogadorBase : MonoBehaviour {
 		tempoAnimacao = 4.0f + Time.time;
 		musica = GetComponent<AudioSource>();
 		controlador = GetComponent<CharacterController>();
+		int fase = SceneManager.GetActiveScene ().buildIndex - 1;
+		if (PlayerPrefs.GetInt ("maxFase") < fase)
+			PlayerPrefs.SetInt ("maxFase", fase);
 
 	}
 
