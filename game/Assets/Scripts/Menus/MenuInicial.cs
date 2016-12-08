@@ -5,6 +5,7 @@ public class MenuInicial : MonoBehaviour {
 
 	public GameObject Fases;
 
+////	Toggle comentários para limpar os dados
 //	public void Start(){
 //		PlayerPrefs.DeleteAll ();
 //	}

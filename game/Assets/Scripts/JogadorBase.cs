@@ -18,6 +18,7 @@ public abstract class JogadorBase : MonoBehaviour {
 	public AudioClip obstaculo;
 	public AudioSource musica;
 
+	public Vector3 moveX;
 	public float velocidade;
 	public float range = 0.2f;
 	public float tempoAnimacao;
@@ -51,10 +52,10 @@ public abstract class JogadorBase : MonoBehaviour {
 	}
 
 	public virtual void  moverX(){
-		if (!movendoX && Input.GetMouseButton(0)){
+		if (Input.GetMouseButtonUp(0)){
 			switch(proximoX) {
 			case 2:
-				proximoX = ProximoX(2, 0);
+				proximoX = ProximoX (2, 0);
 				break;
 			case 0:
 				proximoX = ProximoX(2, -2);
@@ -63,6 +64,7 @@ public abstract class JogadorBase : MonoBehaviour {
 				proximoX = ProximoX(0, -2);
 				break;
 			}
+			moveX.x = proximoX;
 			direcaoX = ProximoX(2,-2);
 		}
 	}
@@ -73,10 +75,9 @@ public abstract class JogadorBase : MonoBehaviour {
 				contPulo++;
 			else if (contPulo >= previnirPulosConsecutivos) {
 				movimento.y = velocidadePulo;
+				Debug.Log ("pular");
 				contPulo = 0;
 			}
-			Debug.Log ("isGrounded");
-			// playerRigidbody.AddForce (new Vector3 (0.0f, velocidadePulo, 0.0f));
 		}
 		movimento.y -= gravidade * Time.deltaTime;
 
@@ -99,6 +100,7 @@ public abstract class JogadorBase : MonoBehaviour {
 			}
 			direcaoX = -2;
 		}
+		moveX.x = proximoX;
 	}
 
 	public void moverYMobile (){
@@ -117,12 +119,7 @@ public abstract class JogadorBase : MonoBehaviour {
 			controlador.Move(Vector3.forward * 3.0f * Time.deltaTime);
 			return;
 		}
-		///weird ass behaviour
-		// if (Input.GetMouseButton(1))
-		// 	 playerRigidbody.AddForce (new Vector3 (0.0f, velocidadePulo, 0.0f));
-		// if (Input.GetMouseButton(0))
-		// 	playerRigidbody.AddForce (new Vector3 (0.0f, 0.0f, velocidade));
-		// definindo a movimentação
+	
 		foreach (Touch touch in Input.touches){
 			if (touch.phase == TouchPhase.Began){
 				firstp = touch.position;
@@ -145,14 +142,16 @@ public abstract class JogadorBase : MonoBehaviour {
 		}
 		moverX();
 		moverY();
-		if (Mathf.Abs(transform.position.x - proximoX) > range){
-			movendoX = true;
-			movimento.x = direcaoX;
-		}
-		else{
-			movendoX = false;
-			movimento.x = 0.0f;
-		}
+
+
+//		if ((Mathf.Abs(transform.position.x - proximoX) >= range)){
+//			movendoX = true;
+//			movimento.x = direcaoX;
+//		}
+//		else{
+//			movendoX = false;
+//			movimento.x = 0.0f;
+//		}
 		if (tempoAbaixado <= 0.0f) {
 			transform.localRotation = Quaternion.Euler (new Vector3 (0, 0, 0));
 			controlador.height = 2.0f;
@@ -163,11 +162,14 @@ public abstract class JogadorBase : MonoBehaviour {
 		}
 		movimento.y -= gravidade * Time.deltaTime;
 		movimento.z = velocidade;
+
 		controlador.Move(movimento * velocidade*Time.deltaTime);
 
-		//gambis para não atravessar o plano
-		//if (transform.position.y < 1.0f)
-		//	movimento.y = 1.0805f;
+		moveX.y = transform.position.y;
+		moveX.y = Mathf.Clamp (moveX.y, -0.01f, 100.0f);
+		moveX.z = transform.position.z;
+
+		transform.position = Vector3.Lerp(transform.position, moveX, Mathf.SmoothStep(0f,1f, Mathf.PingPong(0.35f, 1f)));
 	}
 
 	private int ProximoX(int a, int b){
@@ -212,7 +214,7 @@ public abstract class JogadorBase : MonoBehaviour {
 		}
 		if (GetComponent<Pontuacao>().getPontuacao() <= 0)
 			Perdeu();
-		else if (GetComponent<Pontuacao>().getPontuacao() >= 1000.0f)
+		else if (GetComponent<Pontuacao>().getPontuacao() >= 2000.0f)
 			Ganhou();
 	}
 

@@ -9,6 +9,10 @@ public class FimFase : MonoBehaviour {
     private float segProxFase = 10.0f;
     public Text contadorTexto;
 
+	public Image RadialProgress;
+
+
+
 	public string proximaFase;
 
     public Image imgFundo;
@@ -23,7 +27,6 @@ public class FimFase : MonoBehaviour {
         contadorTexto.text = ((int)segProxFase).ToString();
     }
 
-    // Update is called once per frame
     void Update () {
         if (!visivel)
             return;
@@ -31,7 +34,6 @@ public class FimFase : MonoBehaviour {
         imgFundo.color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, transicao);
 
         if(segProxFase <= 0.0f){
-            Debug.Log("chamou a cena");
 			SceneManager.LoadScene(proximaFase);
         }
 
