@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 17847d57168e1914cbcb170af6c3e9fc
+timeCreated: 1480517172
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpriteCorrendo_0
+    21300002: SpriteCorrendo_1
+    21300004: SpriteCorrendo_2
+    21300006: SpriteCorrendo_3
+    21300008: SpriteCorrendo_4
+    21300010: SpriteCorrendo_5
+    21300012: SpriteCorrendo_6
+    21300014: SpriteCorrendo_7
+    21300016: SpriteCorrendo_8
+    21300018: SpriteCorrendo_9
+    21300020: SpriteCorrendo_10
+    21300022: SpriteCorrendo_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpriteCorrendo_0
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 302
+        width: 260
+        height: 531
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_1
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 276
+        width: 381
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_2
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 261
+        width: 274
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_3
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 256
+        width: 272
+        height: 574
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_4
+      rect:
+        serializedVersion: 2
+        x: 2236
+        y: 260
+        width: 272
+        height: 573
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_5
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 285
+        width: 376
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_6
+      rect:
+        serializedVersion: 2
+        x: 3170
+        y: 256
+        width: 239
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_7
+      rect:
+        serializedVersion: 2
+        x: 3647
+        y: 284
+        width: 335
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_8
+      rect:
+        serializedVersion: 2
+        x: 4019
+        y: 261
+        width: 272
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_9
+      rect:
+        serializedVersion: 2
+        x: 4430
+        y: 241
+        width: 274
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_10
+      rect:
+        serializedVersion: 2
+        x: 4843
+        y: 270
+        width: 272
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteCorrendo_11
+      rect:
+        serializedVersion: 2
+        x: 5254
+        y: 253
+        width: 378
+        height: 574
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

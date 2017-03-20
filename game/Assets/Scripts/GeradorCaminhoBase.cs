@@ -19,7 +19,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
     public int maxCaminhosNaTela = 7;
 
     public List<GameObject> caminhosNaTela;
-
+	public List<GameObject> lateraisNaTela;
 
     void Start () {
         caminhosNaTela = new List<GameObject>();
@@ -39,14 +39,24 @@ public class GeradorCaminhoBase : MonoBehaviour {
         }
     }
 
+	private GameObject setupPeca(float x, int index){
+		GameObject peca = Instantiate(caminhos[index]) as GameObject;
+		peca.transform.SetParent(transform);
+		peca.transform.position = new Vector3(x, 0, posicaoZ);
+		return peca;
+	}
+
+	private void addLaterais(){
+		GameObject lateralEsq = setupPeca (-13.0f, 1);
+		GameObject lateralDir = setupPeca (13.0f, 1);
+		caminhosNaTela.Add (lateralEsq);
+		caminhosNaTela.Add (lateralDir);
+	}
+
     private void AddCaminho(int op = -1){
 		zpos = 0.0f;
-        GameObject caminho = Instantiate(caminhos[0]) as GameObject;
-        caminho.transform.SetParent(transform);
-        caminho.transform.position = new Vector3(0, 0, posicaoZ);
-//		GameObject caminho2 = Instantiate(caminhos[1]) as GameObject;
-//		caminho2.transform.SetParent(transform);
-//		caminho2.transform.position = new Vector3(-6, 0, posicaoZ);
+		GameObject caminho = setupPeca (0, 0);
+//		addLaterais ();
 
         if(op == -1){
 			float z = 2.0f;
@@ -76,8 +86,10 @@ public class GeradorCaminhoBase : MonoBehaviour {
     }
 
     private void DelCaminho(){
-        Destroy(caminhosNaTela[0]);
-        caminhosNaTela.RemoveAt(0);
+//		for (int i = 0; i < 3; i++) {
+			Destroy (caminhosNaTela [0]);
+			caminhosNaTela.RemoveAt (0);
+//		}
     }
 
 }

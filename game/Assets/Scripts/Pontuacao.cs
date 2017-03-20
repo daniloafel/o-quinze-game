@@ -10,7 +10,6 @@ public class Pontuacao : MonoBehaviour {
 	public Image radialProgress;
 
 	public FimFase fimFase;
-    public Text textoPontuacao;
 	public FimDeJogo fimDeJogo;
 
 	public int timeDecay;
@@ -27,8 +26,7 @@ public class Pontuacao : MonoBehaviour {
 	void Update () {
         if (!jogando)
             return;
-        textoPontuacao.text = ((int)pontuacao).ToString();
-		pontuacao -= Time.deltaTime*2 * timeDecay;
+		pontuacao -= Time.deltaTime*5 * timeDecay;
 		loadingBar.fillAmount = (pontuacao / maxPontuacao);
     }
 

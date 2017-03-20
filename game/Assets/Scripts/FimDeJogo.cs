@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 public class FimDeJogo : MonoBehaviour {
 
     public Image imgFundo;
+	public Image RadialProgress;
+	public GameObject Jogador;
+	public GameObject GeradorCaminho;
 
 
-    private bool visivel = true;
+
     private float transicao = 0.0f;
     
     void Start(){
@@ -15,19 +18,17 @@ public class FimDeJogo : MonoBehaviour {
     }
     
     void Update(){
-        if (!visivel)
-            return;
         transicao += Time.deltaTime;
-        imgFundo.color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, transicao);
-
+		imgFundo.color = Color.Lerp(new Color(0, 0, 0, 0), Color.white, transicao);
     }
         
     public void ToggleMenu(){
         gameObject.SetActive(true);
+		RadialProgress.gameObject.SetActive (false);
     }
 
     public void Restart(){
-        SceneManager.LoadScene("Fase 1 - Viagem da familia de Chico Bento para Fortaleza");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
