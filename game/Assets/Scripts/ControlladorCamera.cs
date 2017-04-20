@@ -26,7 +26,7 @@ public class ControlladorCamera : MonoBehaviour {
         //X
         movimento.x = 0;
         //Y
-        movimento.y = Mathf.Clamp(movimento.y, 1.8f, 3);
+        movimento.y = 3;
 
 		movimento.z -= 4.0f;
         if (transicao > 1.0f){
