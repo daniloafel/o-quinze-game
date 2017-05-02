@@ -25,11 +25,15 @@ public class GeradorCaminhoBase : MonoBehaviour {
         caminhosNaTela = new List<GameObject>();
         jogadorTransform = GameObject.FindGameObjectWithTag("Player").transform;
         for (int i = 0; i < maxCaminhosNaTela; i++){
+            Debug.Log("entrei " + i + " vezes.");
             if (i < 3)
                 AddCaminho(0);
             else
                 AddCaminho();
         }
+
+        Debug.Log(caminhosNaTela[0].gameObject.transform.localScale);
+
     }
 
     void Update () {
@@ -39,6 +43,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
         }
     }
 
+    //Define qual peça do Array será instanciada e retorna a peça
 	private GameObject setupPeca(float x, int index){
 		GameObject peca = Instantiate(caminhos[index]) as GameObject;
 		peca.transform.SetParent(transform);
@@ -53,9 +58,14 @@ public class GeradorCaminhoBase : MonoBehaviour {
 		caminhosNaTela.Add (lateralDir);
 	}
 
+    //Adiciona caminho novo na fase
     private void AddCaminho(int op = -1){
+
+        //Define um dos tres prefabs para serem instanciados aleatoriamente
+        int tipoCaminho = Random.Range(0, 2);
+
 		zpos = 0.0f;
-		GameObject caminho = setupPeca (0, 0);
+		GameObject caminho = setupPeca (0, tipoCaminho);
 //		addLaterais ();
 
         if(op == -1){
@@ -71,6 +81,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
         caminhosNaTela.Add(caminho);
     }
 
+    //Adicioana os objetos aleatoriamente na estrada recebida por paramentro
 	public virtual void AddObjeto(GameObject caminho, float z){
 		int tipo = Random.Range (0, 2);
         GameObject objeto;

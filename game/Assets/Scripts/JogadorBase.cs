@@ -50,8 +50,9 @@ public abstract class JogadorBase : MonoBehaviour {
 			PlayerPrefs.SetInt ("maxFase", fase);
 
 	}
-
-	public virtual void  moverX(){
+	
+    public virtual void  moverX(){
+        //Mover com o mouse ou touch
 		if (Input.GetMouseButtonUp(0)){
 			switch(proximoX) {
 			case 2:
@@ -67,7 +68,16 @@ public abstract class JogadorBase : MonoBehaviour {
 			moveX.x = proximoX;
 			direcaoX = ProximoX(2,-2);
 		}
-	}
+
+        //Mover com teclado
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            //Não entendi como funciona o de cima
+        }else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            //Não entendi como funciona o de cima
+        }
+    }
 
 	public void moverY(){
 		if (controlador.isGrounded) {
@@ -119,6 +129,8 @@ public abstract class JogadorBase : MonoBehaviour {
 			controlador.Move(Vector3.forward * 3.0f * Time.deltaTime);
 			return;
 		}
+        //Debug.Log(movimento);
+        //Camera.main.gameObject.transform.position = Vector3.MoveTowards(Camera.main.gameObject.transform.position,  movimento, 1f*Time.deltaTime);
 	
 		foreach (Touch touch in Input.touches){
 			if (touch.phase == TouchPhase.Began){
