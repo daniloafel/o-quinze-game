@@ -93,7 +93,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
             }
         }
 
-        tipoCaminho = 0;
+        //tipoCaminho = 0;
 
         zpos = 0.0f;
 		GameObject caminho = setupPeca (0, tipoCaminho);
