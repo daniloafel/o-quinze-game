@@ -62,9 +62,40 @@ public class GeradorCaminhoBase : MonoBehaviour {
     private void AddCaminho(int op = -1){
 
         //Define um dos tres prefabs para serem instanciados aleatoriamente
-        int tipoCaminho = Random.Range(0, 2);
+        int tipoCaminho = Random.Range(0, 5);
 
-		zpos = 0.0f;
+        if (tipoCaminho == 4)
+        {
+            int temp = Random.Range(0, 2);
+            if (temp == 1)
+            {
+                tipoCaminho = 6;
+            }
+            else if (temp == 2)
+            {
+                tipoCaminho = 7;
+            }
+        }
+        else if (tipoCaminho == 5)
+        {
+            int temp = Random.Range(0, 3);
+            if (temp == 1)
+            {
+                tipoCaminho = 8;
+            }
+            else if (temp == 2)
+            {
+                tipoCaminho = 9;
+            }
+            else if (temp == 3)
+            {
+                tipoCaminho = 10;
+            }
+        }
+
+        //tipoCaminho = 0;
+
+        zpos = 0.0f;
 		GameObject caminho = setupPeca (0, tipoCaminho);
 //		addLaterais ();
 
@@ -73,7 +104,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
 			for(int i = 0; i < maxObstaculos; i++){
 				if (Random.Range(0,2) == 0)
                 	AddObjeto(caminho,z);
-				z += (tamanhoCaminho-4.0f) / maxObstaculos;
+				z += (tamanhoCaminho) / maxObstaculos;
             }
         }
         ultimoZ = posicaoZ;
