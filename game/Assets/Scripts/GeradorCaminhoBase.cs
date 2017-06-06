@@ -50,10 +50,11 @@ public class GeradorCaminhoBase : MonoBehaviour {
 
     //Adiciona caminho novo na fase
     private void AddCaminho(int op = -1){
-
         //Define um dos tres prefabs para serem instanciados aleatoriamente
-        int tipoCaminho = Random.Range(0, 5);
-
+		int tipoCaminho = Random.Range(0, caminhos.Length);
+		if (op != -1)
+			tipoCaminho = 0;
+		/*
         if (tipoCaminho == 4){
             int temp = Random.Range(0, 2);
             if (temp == 1){
@@ -75,7 +76,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
                 tipoCaminho = 10;
             }
         }
-
+		*/
         zpos = 0.0f;
 		GameObject caminho = setupPeca (0, tipoCaminho);
         maxObstaculos = (caminho.transform.childCount / 3);

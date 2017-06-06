@@ -2,40 +2,29 @@
 
 public class ControlladorCamera : MonoBehaviour {
 
-    private Transform lookAt;
+	private Camera cameraPrincipal;
+	private GameObject player;
+	private CharacterController controlador;
 
-    private Vector3 startrOffset;
-    private Vector3 movimento;
+	void Start () {
+		cameraPrincipal = GetComponent<Camera>();
+		player = GameObject.FindGameObjectWithTag ("Player");
+		controlador = player.GetComponent<CharacterController>();
+	}
 
-    private float transicao = 0.0f;
-    private float tempoAnimacao = 4.0f;
-    private Vector3 animationOffset = new Vector3(0, 5, 5);
 
-    void Start () {
-        transicao = 0.0f;
-        tempoAnimacao = 4.0f;
-        animationOffset = new Vector3(0, 5, 5);
-        lookAt = GameObject.FindGameObjectWithTag("Player").transform;
-        startrOffset = transform.position - lookAt.position;
-    }
-	
+	void Update () {
+		Vector3 playerInfo = player.transform.position;
+		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 15);
 
-	void LateUpdate () {
-        movimento = lookAt.position + startrOffset;
+		movimento.x = 0;
+		movimento.y += 5;
 
-        //X
-        movimento.x = 0;
-        //Y
-        movimento.y = 3;
+		RaycastHit hit;
+		if (Physics.Raycast(playerInfo, -Vector3.up, out hit)) {
+			movimento.y = hit.point.y+5.0f;
+		}
 
-		movimento.z -= 4.0f;
-        if (transicao > 1.0f){
-            transform.position = movimento;
-        }
-        else{
-            transform.position = Vector3.Lerp(movimento + animationOffset, movimento, transicao);
-            transicao += Time.deltaTime * 1 / tempoAnimacao;
-            transform.LookAt(lookAt.position + Vector3.up);
-        }
-    }
+		cameraPrincipal.transform.position = movimento;
+	}
 }
