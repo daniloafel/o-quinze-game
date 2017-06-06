@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a888c94eb2c4f7d4399d02f09f1be985
+timeCreated: 1496768611
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Xilosa
+  fontNames:
+  - Xilosa
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
