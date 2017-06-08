@@ -4,18 +4,16 @@ public class ControlladorCamera : MonoBehaviour {
 
 	private Camera cameraPrincipal;
 	private GameObject player;
-	private CharacterController controlador;
 
 	void Start () {
 		cameraPrincipal = GetComponent<Camera>();
 		player = GameObject.FindGameObjectWithTag ("Player");
-		controlador = player.GetComponent<CharacterController>();
 	}
 
 
 	void Update () {
 		Vector3 playerInfo = player.transform.position;
-		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 15);
+		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 20);
 
 		movimento.x = 0;
 		movimento.y += 5;

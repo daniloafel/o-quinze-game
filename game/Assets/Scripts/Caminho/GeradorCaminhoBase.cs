@@ -44,21 +44,10 @@ public class GeradorCaminhoBase : MonoBehaviour {
 	private GameObject setupPeca(float x, int index){
 		GameObject peca = Instantiate(caminhos[index]) as GameObject;
 		peca.transform.SetParent(transform);
-		peca.transform.position = new Vector3(x, 2, posicaoZ);
+		peca.transform.position = new Vector3(x, 0, posicaoZ);
 		return peca;
 	}
 
-<<<<<<< HEAD
-	//não ultilizado
-	private void addLaterais(){
-		GameObject lateralEsq = setupPeca (-13.0f, 1);
-		GameObject lateralDir = setupPeca (13.0f, 1);
-		caminhosNaTela.Add (lateralEsq);
-		caminhosNaTela.Add (lateralDir);
-	}
-
-=======
->>>>>>> 2144d09e7682a579048c4e7bac1d216a03ccba0f
     //Adiciona caminho novo na fase
     private void AddCaminho(int op = -1){
         //Define um dos tres prefabs para serem instanciados aleatoriamente
