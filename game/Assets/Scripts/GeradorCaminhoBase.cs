@@ -47,10 +47,11 @@ public class GeradorCaminhoBase : MonoBehaviour {
 	private GameObject setupPeca(float x, int index){
 		GameObject peca = Instantiate(caminhos[index]) as GameObject;
 		peca.transform.SetParent(transform);
-		peca.transform.position = new Vector3(x, 0, posicaoZ);
+		peca.transform.position = new Vector3(x, 2, posicaoZ);
 		return peca;
 	}
 
+	//não ultilizado
 	private void addLaterais(){
 		GameObject lateralEsq = setupPeca (-13.0f, 1);
 		GameObject lateralDir = setupPeca (13.0f, 1);
