@@ -11,7 +11,7 @@ public class JogadorFase5 : JogadorBase {
 		if (velocidade < maxVelocidade) {
 			velocidade += 0.2f*Time.deltaTime;
 		}
-		pontuacao.pontuacao = tempoMaximo - Time.timeSinceLevelLoad;
+//		pontuacao.pontuacao = tempoMaximo - Time.timeSinceLevelLoad;
 
 		if (Time.timeSinceLevelLoad > tempoMaximo && transform.position.z < posicaoConceicao)
 			Perdeu();

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public abstract class JogadorBase : MonoBehaviour {
 	public Vector3 movimento;
 
-	public Pontuacao pontuacao;
+//	public Pontuacao pontuacao;
 	public CharacterController controlador;
 	public GeradorCaminhoBase geradorCaminho;
 
@@ -190,44 +190,44 @@ public abstract class JogadorBase : MonoBehaviour {
 
 	public void Perdeu() {
 		jogando = false;
-		GetComponent<Pontuacao>().Perdeu();
+//		GetComponent<Pontuacao>().Perdeu();
 		Analytics.CustomEvent("Perdeu", new Dictionary<string, object>
 			{	
 				{ "Fase", SceneManager.GetActiveScene().name}, 
 				{ "Tempo", Time.timeSinceLevelLoad }, 
 				{ "Distancia", geradorCaminho.posicaoZ}, 
 				{ "Velocidade", velocidade}, 
-				{ "Pontuacao Inicial", pontuacao.pontuacaoInicial}
+//				{ "Pontuacao Inicial", pontuacao.pontuacaoInicial}
 			});
 	}
 
 	public void Ganhou(){
 		jogando = false;
-		GetComponent<Pontuacao>().Ganhou();
+//		GetComponent<Pontuacao>().Ganhou();
 		Analytics.CustomEvent("Proxima Fase", new Dictionary<string, object>
 			{
 				{ "Fase", SceneManager.GetActiveScene().name}, 
 				{ "Tempo", Time.timeSinceLevelLoad }, 
 				{ "Distancia", geradorCaminho.posicaoZ}, 
 				{ "Velocidade", velocidade}, 
-				{ "Pontuacao Inicial", pontuacao.pontuacaoInicial}
+//				{ "Pontuacao Inicial", pontuacao.pontuacaoInicial}
 			});
 	}
 
 	private void OnControllerColliderHit(ControllerColliderHit hit) {
 		int pontosAdd = getPontos(hit.gameObject.tag);
 		if (pontosAdd != 0){
-			GetComponent<Pontuacao>().AddPontos(pontosAdd);
+//			GetComponent<Pontuacao>().AddPontos(pontosAdd);
 			Destroy(hit.gameObject);
 			if (pontosAdd > 0) {
 				musica.PlayOneShot (item, 0.7F);
 			}else
 				musica.PlayOneShot (obstaculo, 0.7F);
 		}
-		if (GetComponent<Pontuacao>().getPontuacao() <= 0)
-			Perdeu();
-		else if (GetComponent<Pontuacao>().getPontuacao() >= 2000.0f)
-			Ganhou();
+////		if (GetComponent<Pontuacao>().getPontuacao() <= 0)
+//			Perdeu();
+//		else if (GetComponent<Pontuacao>().getPontuacao() >= 2000.0f)
+//			Ganhou();
 	}
 
 	public abstract int getPontos (string tagHit);

@@ -4,12 +4,10 @@ public class ControlladorCamera : MonoBehaviour {
 
 	private Camera cameraPrincipal;
 	private GameObject player;
-	private CharacterController controlador;
 
 	void Start () {
 		cameraPrincipal = GetComponent<Camera>();
 		player = GameObject.FindGameObjectWithTag ("Player");
-		controlador = player.GetComponent<CharacterController>();
 	}
 
 
@@ -20,11 +18,16 @@ public class ControlladorCamera : MonoBehaviour {
 		movimento.x = 0;
 		movimento.y += 5;
 
-		RaycastHit hit;
-		if (Physics.Raycast(playerInfo, -Vector3.up, out hit)) {
-			movimento.y = hit.point.y+5.0f;
-		}
+		RaycastHit[] hits;
+		hits = Physics.RaycastAll(playerInfo, -Vector3.up, 100.0F);
 
+		for (int i = 0; i < hits.Length; i++) {
+			RaycastHit hit_ = hits [i];
+			if (hit_.transform.tag == "Caminho") {
+				movimento.y = hit_.point.y+5.0f;
+			}
+		}
 		cameraPrincipal.transform.position = movimento;
+
 	}
 }
