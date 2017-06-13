@@ -13,16 +13,21 @@ public class ControlladorCamera : MonoBehaviour {
 
 	void Update () {
 		Vector3 playerInfo = player.transform.position;
-		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 20);
+		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 15);
 
 		movimento.x = 0;
 		movimento.y += 5;
 
-		RaycastHit hit;
-		if (Physics.Raycast(playerInfo, -Vector3.up, out hit)) {
-			movimento.y = hit.point.y+5.0f;
-		}
+		RaycastHit[] hits;
+		hits = Physics.RaycastAll(playerInfo, -Vector3.up, 100.0F);
 
+		for (int i = 0; i < hits.Length; i++) {
+			RaycastHit hit_ = hits [i];
+			if (hit_.transform.tag == "Caminho") {
+				movimento.y = hit_.point.y+5.0f;
+			}
+		}
 		cameraPrincipal.transform.position = movimento;
+
 	}
 }

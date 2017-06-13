@@ -11,6 +11,11 @@ public class MovimentoPersonagem : MonoBehaviour {
 	private float velocidade;
 	private float gravidade;
 	private Vector3 movimento;
+	private bool jogando;
+
+	//referente ao pulo
+	private int contPulo;
+	public int previnirPulosConsecutivos = 1;
 
 	//referentes aos controles mobile
 	private float tamanhoSwipe;
@@ -23,16 +28,27 @@ public class MovimentoPersonagem : MonoBehaviour {
 	//trilha atual
 	private int trilha;
 
+
+
 	void Start () {
 		//começa na trilha do meio
 		trilha = 1;
 		velocidade = 50.0f;
-		gravidade = 30.0f;
+		gravidade = 10.0f;
+		tamanhoSwipe = 0;
 		controlador = GetComponent<CharacterController> ();
 		inputToque = false;
+		jogando = true;
 	}
 
 	public void Update(){
+		if (!jogando) {
+			/***************************
+			 * TO-DO:
+			 * - Rodar animação parado
+			 ***************************/
+			return;
+		}
 		DetectarToques ();
 		GetInputUsuario();
 		
@@ -52,6 +68,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 
 
 	private void GetInputUsuario(){
+
 		switch (Application.platform) {
 			case RuntimePlatform.Android:
 			case RuntimePlatform.IPhonePlayer:
@@ -77,6 +94,8 @@ public class MovimentoPersonagem : MonoBehaviour {
 				Deslizar ();
 
 		}
+		if (!Input.GetMouseButton(1))
+			contPulo++;
 	}
 
 	private void MudaParaTrilhaDireita(){
@@ -91,11 +110,25 @@ public class MovimentoPersonagem : MonoBehaviour {
 	}
 
 	private void Pular(){
-		Debug.Log ("Pular");
+		if (controlador.isGrounded) {
+			if (contPulo >= previnirPulosConsecutivos) {
+				movimento.y = 80.0f;
+				contPulo = 0;
+				/***************************
+				 * TO-DO:
+				 * - Rodar animação de pulo
+				 ***************************/
+			}
+		}
 	}
 
 	private void Deslizar(){
 		Debug.Log ("Deslizar");
+		/***************************
+		 * TO-DO:
+		 * - Rodar animação de deslize
+		 * - Alterar o character controler
+		 ***************************/
 	}
 
 
@@ -137,4 +170,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 		}
 	}
 
+	public void SetJogando(bool estado){
+		jogando = estado;
+	}
 }

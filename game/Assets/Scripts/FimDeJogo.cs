@@ -22,7 +22,7 @@ public class FimDeJogo : MonoBehaviour {
 		imgFundo.color = Color.Lerp(new Color(0, 0, 0, 0), Color.white, transicao);
     }
         
-    public void ToggleMenu(){
+    public void FinalizarFase(){
         gameObject.SetActive(true);
 		RadialProgress.gameObject.SetActive (false);
     }

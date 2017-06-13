@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public class FimFase : MonoBehaviour {
+public class ProximaFase : MonoBehaviour {
 
     private float segProxFase = 10.0f;
     public Text contadorTexto;
@@ -41,7 +41,7 @@ public class FimFase : MonoBehaviour {
         contadorTexto.text = ((int)segProxFase).ToString();
     }
 
-    public void ToggleMenu(){
+    public void AtivarProximaFase(){
         gameObject.SetActive(true);
         visivel = true;
     }
