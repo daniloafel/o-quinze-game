@@ -54,7 +54,7 @@ public class ControladorFase : MonoBehaviour {
 
 	//modificar para qualquer que seja a condição de finalizar a fase
 	bool AtingiuObjetivo(){
-		return (player.transform.position.z > 1000.0);
+		return (player.transform.position.z > 10000.0);
 	}
 
 	void IniciarProximaFase(){		

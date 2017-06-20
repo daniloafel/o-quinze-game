@@ -24,7 +24,7 @@ public class ControlladorCamera : MonoBehaviour {
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hit_ = hits [i];
 			if (hit_.transform.tag == "Caminho") {
-				movimento.y = hit_.point.y+5.0f;
+				movimento.y = hit_.point.y+10.0f;
 			}
 		}
 		cameraPrincipal.transform.position = movimento;
