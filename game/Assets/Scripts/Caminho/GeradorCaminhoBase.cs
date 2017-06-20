@@ -102,7 +102,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
         // 3 é o número de trilhas
         int col = Random.Range(0, 3);
         int childIndex = 3 * linha + col;
-        Transform parentTransform = caminho.transform.GetChild(childIndex).transform;
+		Transform parentTransform = caminho.transform.GetChild(0).transform.GetChild(childIndex).transform;
         objeto.transform.SetParent(parentTransform);
         objeto.transform.position = parentTransform.position;
     }
