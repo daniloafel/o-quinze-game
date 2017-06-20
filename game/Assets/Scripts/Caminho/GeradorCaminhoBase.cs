@@ -16,7 +16,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
 	public float tamanhoCaminho = 30.0f;
 
 	public int maxObstaculos = 4;
-    public int maxCaminhosNaTela = 7;
+    public int maxCaminhosNaTela = 8;
 
     public List<GameObject> caminhosNaTela;
 

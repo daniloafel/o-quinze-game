@@ -15,7 +15,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 
 	//referente ao pulo
 	private int contPulo;
-	public int previnirPulosConsecutivos = 1;
+	private int previnirPulosConsecutivos = 1;
 
 	//referentes aos controles mobile
 	private float tamanhoSwipe;
@@ -27,9 +27,11 @@ public class MovimentoPersonagem : MonoBehaviour {
 	private static float[] posicoesX = {-3.5f, 0f, 3.5f}; 
 	//trilha atual
 	private int trilha;
+	
 
-
-
+	// particulas
+	private ParticleSystem poeira;
+	private bool tocandoChao;
 	void Start () {
 		//começa na trilha do meio
 		trilha = 1;
@@ -39,6 +41,8 @@ public class MovimentoPersonagem : MonoBehaviour {
 		controlador = GetComponent<CharacterController> ();
 		inputToque = false;
 		jogando = true;
+		poeira = controlador.GetComponentInChildren<ParticleSystem> ();
+		poeira.Play ();
 	}
 
 	public void Update(){
@@ -64,6 +68,10 @@ public class MovimentoPersonagem : MonoBehaviour {
 		movimento.y -= gravidade;
 		movimento.z = velocidade;
 		controlador.Move (movimento*Time.deltaTime);
+
+		//Animações
+		SetarPoeira();
+
 	}
 
 
@@ -112,7 +120,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 	private void Pular(){
 		if (controlador.isGrounded) {
 			if (contPulo >= previnirPulosConsecutivos) {
-				movimento.y = 80.0f;
+				movimento.y = 65.0f;
 				contPulo = 0;
 				/***************************
 				 * TO-DO:
@@ -172,5 +180,15 @@ public class MovimentoPersonagem : MonoBehaviour {
 
 	public void SetJogando(bool estado){
 		jogando = estado;
+	}
+
+	void SetarPoeira(){
+		if (controlador.isGrounded) {
+			if (!poeira.isPlaying)
+				poeira.Play ();
+		} else {
+			poeira.Pause ();
+			poeira.Clear ();
+		}
 	}
 }
