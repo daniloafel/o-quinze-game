@@ -120,7 +120,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 	private void Pular(){
 		if (controlador.isGrounded) {
 			if (contPulo >= previnirPulosConsecutivos) {
-				movimento.y = 65.0f;
+				movimento.y = 80.0f;
 				contPulo = 0;
 				/***************************
 				 * TO-DO:

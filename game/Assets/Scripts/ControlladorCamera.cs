@@ -5,6 +5,8 @@ public class ControlladorCamera : MonoBehaviour {
 	private Camera cameraPrincipal;
 	private GameObject player;
 
+	public GameObject sol;
+
 	void Start () {
 		cameraPrincipal = GetComponent<Camera>();
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -29,5 +31,7 @@ public class ControlladorCamera : MonoBehaviour {
 		}
 		cameraPrincipal.transform.position = movimento;
 
+		Vector3 solP = new Vector3 (sol.transform.position.x, sol.transform.position.y +50*Time.deltaTime, sol.transform.position.z +50*Time.deltaTime);
+		sol.transform.position = solP;
 	}
 }
