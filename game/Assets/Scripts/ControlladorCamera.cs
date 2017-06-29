@@ -5,7 +5,7 @@ public class ControlladorCamera : MonoBehaviour {
 	private Camera cameraPrincipal;
 	private GameObject player;
 
-	public GameObject sol;
+//	public GameObject sol;
 
 	void Start () {
 		cameraPrincipal = GetComponent<Camera>();
@@ -15,7 +15,7 @@ public class ControlladorCamera : MonoBehaviour {
 
 	void Update () {
 		Vector3 playerInfo = player.transform.position;
-		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 15);
+		Vector3 movimento = new Vector3 (playerInfo.x, playerInfo.y, playerInfo.z - 20);
 
 		movimento.x = 0;
 		movimento.y += 5;
@@ -26,12 +26,12 @@ public class ControlladorCamera : MonoBehaviour {
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hit_ = hits [i];
 			if (hit_.transform.tag == "Caminho") {
-				movimento.y = hit_.point.y+10.0f;
+				movimento.y = hit_.point.y+5.0f;
 			}
 		}
 		cameraPrincipal.transform.position = movimento;
 
-		Vector3 solP = new Vector3 (sol.transform.position.x, sol.transform.position.y +50*Time.deltaTime, sol.transform.position.z +50*Time.deltaTime);
-		sol.transform.position = solP;
+//		Vector3 solP = new Vector3 (sol.transform.position.x, sol.transform.position.y +50*Time.deltaTime, sol.transform.position.z +50*Time.deltaTime);
+//		sol.transform.position = solP;
 	}
 }

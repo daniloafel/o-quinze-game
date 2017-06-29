@@ -24,11 +24,12 @@ public class MovimentoPersonagem : MonoBehaviour {
 	private bool inputToque;
 
 	//posições das trilhas
-	private static float[] posicoesX = {-3.5f, 0f, 3.5f}; 
+	private static List<float> posicoesX = new List<float>{-3.5f, 0f, 3.5f}; 
 	//trilha atual
 	private int trilha;
 	
 
+	private int oldTrilha;
 	// particulas
 	private ParticleSystem poeira;
 	private bool tocandoChao;
@@ -120,7 +121,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 	private void Pular(){
 		if (controlador.isGrounded) {
 			if (contPulo >= previnirPulosConsecutivos) {
-				movimento.y = 80.0f;
+				movimento.y = 60.0f;
 				contPulo = 0;
 				/***************************
 				 * TO-DO:
@@ -141,8 +142,10 @@ public class MovimentoPersonagem : MonoBehaviour {
 
 
 	private void DetectarSwipe(){
-		if (!inputToque)
+		if (!inputToque) {
+			contPulo++;
 			return;
+		}
 		float difX = Mathf.Abs(ponto2.x - ponto1.x);
 		float difY = Mathf.Abs(ponto2.y - ponto1.y);
 
@@ -183,6 +186,7 @@ public class MovimentoPersonagem : MonoBehaviour {
 	}
 
 	void SetarPoeira(){
+		//tratando o pulo
 		if (controlador.isGrounded) {
 			if (!poeira.isPlaying)
 				poeira.Play ();

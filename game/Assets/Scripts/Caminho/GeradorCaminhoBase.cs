@@ -4,8 +4,9 @@ using System.Collections.Generic;
 public class GeradorCaminhoBase : MonoBehaviour {
 
 	public GameObject[] itens;
-    public GameObject[] caminhos;
     public GameObject[] obstaculos;
+
+	public GameObject[] caminhos;
 
 	public Transform jogadorTransform;
 
