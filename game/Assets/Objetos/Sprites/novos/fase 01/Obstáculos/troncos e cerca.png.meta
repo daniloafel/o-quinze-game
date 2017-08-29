@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3f526638d80204c4c94a05e747366df8
-timeCreated: 1498508178
+timeCreated: 1502410240
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,7 +59,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -91,6 +91,14 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,7 +121,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1249
         y: 1726
-        width: 536
+        width: 535
         height: 740
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -215,9 +223,9 @@ TextureImporter:
       name: troncos e cerca_9
       rect:
         serializedVersion: 2
-        x: 1743
+        x: 1964
         y: 323
-        width: 1275
+        width: 1054
         height: 1018
       alignment: 7
       pivot: {x: 0.5, y: 0}

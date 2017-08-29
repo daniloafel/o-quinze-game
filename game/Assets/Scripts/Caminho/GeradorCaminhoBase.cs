@@ -16,8 +16,8 @@ public class GeradorCaminhoBase : MonoBehaviour {
 	public float zonaSegura = 30.0f;
 	public float tamanhoCaminho = 30.0f;
 
-	public int maxObstaculos = 4;
-    public int maxCaminhosNaTela = 8;
+	public int maxObstaculos = 2;
+    public int maxCaminhosNaTela = 7;
 
     public List<GameObject> caminhosNaTela;
 
@@ -80,7 +80,7 @@ public class GeradorCaminhoBase : MonoBehaviour {
 		*/
         zpos = 0.0f;
 		GameObject caminho = setupPeca (0, tipoCaminho);
-        maxObstaculos = (caminho.transform.childCount / 3);
+//		maxObstaculos = (caminho.transform.childCount / 3);
         if (op == -1){
 			for(int i = 0; i < maxObstaculos; i++){
                 AddObjeto(caminho, i);
